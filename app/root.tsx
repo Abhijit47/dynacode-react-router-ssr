@@ -9,6 +9,8 @@ import {
 
 import type { Route } from './+types/root';
 import './app.css';
+import Footer from './components/shared/footer';
+import Navbar from './components/shared/navbar';
 import { ThemeProvider } from './contexts/theme-provider';
 
 // eslint-disable-next-line
@@ -40,7 +42,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <Navbar />
         {children}
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>

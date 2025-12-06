@@ -159,6 +159,7 @@ export {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  // eslint-disable-next-line
   navigationMenuTriggerStyle,
   NavigationMenuViewport,
 };

@@ -9,7 +9,7 @@ export const supportsNotifications = 'Notification' in window;
 export const supportsDarkModeMediaQuery =
   window.matchMedia('(prefers-color-scheme)').media !== 'not all';
 export const supportsWebAssembly = typeof WebAssembly === 'object';
-export const supportsWebGL = (() => {
+export const supportsWebGL = () => {
   try {
     const canvas = document.createElement('canvas');
     return !!(
@@ -19,7 +19,7 @@ export const supportsWebGL = (() => {
   } catch {
     return false;
   }
-})();
+};
 export const supportsServiceWorkerPushManager = 'PushManager' in window;
 export const supportsIntersectionObserver = 'IntersectionObserver' in window;
 export const supportsResizeObserver = 'ResizeObserver' in window;
@@ -50,7 +50,7 @@ export const supportsProximitySensor = 'ProximitySensor' in window;
 export const supportsGeolocationAPI = 'geolocation' in navigator;
 export const supportsNetworkInformationAPI = 'connection' in navigator;
 export const supportsBatteryStatusAPI = 'getBattery' in navigator;
-export const supportsClipboardImagePaste = (() => {
+export const supportsClipboardImagePaste = () => {
   if (!supportsClipboardAPI) return false;
   let supportsImage = false;
   navigator.clipboard
@@ -70,15 +70,15 @@ export const supportsClipboardImagePaste = (() => {
       supportsImage = false;
     });
   return supportsImage;
-})();
-export const supportsTouchscreen = (() => {
+};
+export const supportsTouchscreen = () => {
   if (!supportsTouchEvents) return false;
   return navigator.maxTouchPoints > 0 || 'ontouchstart' in window;
-})();
-export const supportsClipboardAsyncClipboardItems = (() => {
+};
+export const supportsClipboardAsyncClipboardItems = () => {
   if (!supportsClipboardAPI) return false;
   return 'ClipboardItem' in window;
-})();
+};
 export const supportsFileSystemDirectoryAccess =
   'showDirectoryPicker' in window;
 export const supportsVirtualKeyboardAPI = 'virtualKeyboard' in navigator;
@@ -92,24 +92,24 @@ export const supportsShapeDetectionAPI =
   'BarcodeDetector' in window &&
   'TextDetector' in window;
 export const supportsEyeDropperAPI = 'EyeDropper' in window;
-export const supportsCSSContainerQueries = (() => {
+export const supportsCSSContainerQueries = () => {
   return CSS.supports('container-type', 'size');
-})();
-export const supportsCSSBackdropFilter = (() => {
+};
+export const supportsCSSBackdropFilter = () => {
   return (
     CSS.supports('backdrop-filter', 'blur(5px)') ||
     CSS.supports('-webkit-backdrop-filter', 'blur(5px)')
   );
-})();
-export const supportsCSSGrid = (() => {
+};
+export const supportsCSSGrid = () => {
   return CSS.supports('display', 'grid');
-})();
-export const supportsCSSVariables = (() => {
+};
+export const supportsCSSVariables = () => {
   return CSS.supports('--fake-var', '0');
-})();
-export const supportsCSSScrollSnap = (() => {
+};
+export const supportsCSSScrollSnap = () => {
   return CSS.supports('scroll-snap-type', 'y mandatory');
-})();
+};
 
 export const canUseDOM = typeof window !== 'undefined';
 export const hasWebGL = !!window.WebGLRenderingContext;
