@@ -11,7 +11,7 @@ import type { Route } from './+types/root';
 import './app.css';
 import Footer from './components/shared/footer';
 import Navbar from './components/shared/navbar';
-import { ThemeProvider } from './contexts/theme-provider';
+import { ThemeProvider } from './providers/theme-provider';
 
 // eslint-disable-next-line
 export const links: Route.LinksFunction = () => [
@@ -34,11 +34,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <Meta />
-        <script
+        {/* <script
           defer
           crossOrigin='anonymous'
           src='https://tweakcn.com/live-preview.min.js'
-        />
+        /> */}
         <Links />
       </head>
       <body>

@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import Logo from './logo';
+import { ModeToggle } from './mode-toggle';
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -260,6 +261,7 @@ export default function Navbar() {
         </div>
         {/* Right side */}
         <div className='flex items-center gap-2'>
+          <ModeToggle />
           <Button asChild variant='ghost' size='sm' className='text-sm'>
             <a href='#'>Sign In</a>
           </Button>

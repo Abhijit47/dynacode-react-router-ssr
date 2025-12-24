@@ -1,4 +1,7 @@
-import { canUseDOM } from '@/.client/feature-check.client';
+import {
+  canUseDOM,
+  supportsLocalStorage,
+} from '@/.client/feature-check.client';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 type Theme = 'dark' | 'light' | 'system';
@@ -27,17 +30,15 @@ export function ThemeProvider({
   storageKey = 'vite-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  // const canUseDOM = typeof window !== 'undefined';
-
   const [theme, setTheme] = useState<Theme>(() => {
-    if (!canUseDOM) return defaultTheme;
-    const stored = window.localStorage.getItem(storageKey) as Theme | null;
-    return stored || defaultTheme;
+    if (canUseDOM && supportsLocalStorage) {
+      return (window.localStorage.getItem(storageKey) as Theme) || defaultTheme;
+    }
+    return defaultTheme;
   });
 
   useEffect(() => {
     if (!canUseDOM) return;
-
     const root = window.document.documentElement;
 
     root.classList.remove('light', 'dark');
@@ -58,7 +59,9 @@ export function ThemeProvider({
   const value = {
     theme,
     setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
+      if (canUseDOM && supportsLocalStorage) {
+        window.localStorage.setItem(storageKey, theme);
+      }
       setTheme(theme);
     },
   };
